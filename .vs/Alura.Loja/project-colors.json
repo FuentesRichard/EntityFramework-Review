@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d59a32d0-b933-45d7-8922-483bf3c08524": {
+      "ProjectGuid": "d59a32d0-b933-45d7-8922-483bf3c08524",
+      "DisplayName": "Alura.Loja.Testes.ConsoleApp",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
