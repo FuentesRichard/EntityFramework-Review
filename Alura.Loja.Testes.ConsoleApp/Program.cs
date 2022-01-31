@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,20 @@ namespace Alura.Loja.Testes.ConsoleApp
         static void Main(string[] args)
         {
             //GravarUsandoAdoNet();
-            GravarUsandoEntityAsync();
+            //GravarUsandoEntityAsync();
+            RecuperarProdutosAsync();
+        }
+
+        private static async void RecuperarProdutosAsync()
+        {
+            using (var context = new LojaContext())
+            {
+                IList<Produto> produtos = await context.Produtos.ToListAsync();
+                foreach(var produto in produtos)
+                {
+                    Console.WriteLine(produto.Nome);
+                }
+            }
         }
 
         private static async void GravarUsandoEntityAsync()
