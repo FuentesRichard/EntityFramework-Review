@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alura.Loja.Testes.ConsoleApp
 {
@@ -13,7 +10,22 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             //GravarUsandoAdoNet();
             //GravarUsandoEntityAsync();
+            ExcluirProdutosAsync();
             RecuperarProdutosAsync();
+            Console.ReadKey();
+        }
+
+        private static async void ExcluirProdutosAsync()
+        {
+            using (var context = new LojaContext())
+            {
+                IList<Produto> produtos = await context.Produtos.ToListAsync();
+                foreach(Produto produto in produtos)
+                {
+                    context.Remove(produto);
+                    await context.SaveChangesAsync();
+                }
+            }
         }
 
         private static async void RecuperarProdutosAsync()
@@ -21,6 +33,7 @@ namespace Alura.Loja.Testes.ConsoleApp
             using (var context = new LojaContext())
             {
                 IList<Produto> produtos = await context.Produtos.ToListAsync();
+                Console.WriteLine($"Foram encontrados {produtos.Count} produto(s)");
                 foreach(var produto in produtos)
                 {
                     Console.WriteLine(produto.Nome);
